@@ -12,6 +12,6 @@ Un jeu de cache-cache pour les enfants de 4 ans, sans lecture : tout est guidé 
 
 ## Jouer
 
-En ligne : https://florentmoulin35.github.io/cache-cache-animaux/ (ou ouvrir `index.html` dans un navigateur). Astuce : « Ajouter à l'écran d'accueil » pour l'ouvrir en plein écran.
+En ligne : https://florentmoulin35.github.io/Cache-cache-animaux/ (ou ouvrir `index.html` dans un navigateur). Astuce : « Ajouter à l'écran d'accueil » pour l'ouvrir en plein écran.
 
 Un seul fichier, aucune dépendance (police Grandstander via Google Fonts, voix via la synthèse vocale du navigateur).
