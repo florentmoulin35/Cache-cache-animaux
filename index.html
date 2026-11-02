@@ -639,14 +639,24 @@ let sayTimer = 0;
 function say(txt, delay){
   if(!S.sound || !canSpeak) return;
   clearTimeout(sayTimer);
-  sayTimer = setTimeout(()=>{ try{
-    speechSynthesis.cancel();
+  clearTimeout(sayTimer2);
+  sayTimer = setTimeout(()=>{
+    // Sur Android, un speak() juste après cancel() est parfois ignoré : on attend un peu si une phrase était en cours.
+    let busy = false;
+    try{ busy = speechSynthesis.speaking || speechSynthesis.pending; if(busy) speechSynthesis.cancel(); }catch(e){}
+    sayTimer2 = setTimeout(()=>speakNow(txt), busy ? 150 : 0);
+  }, delay||0);
+}
+let sayTimer2 = 0;
+function speakNow(txt){
+  try{
+    try{ speechSynthesis.resume(); }catch(e){}
     const u = new SpeechSynthesisUtterance(txt); u.lang = 'fr-FR'; if(voice) u.voice = voice; const natural = voice && (NATURAL.test(voice.name) || /eloise/i.test(voice.name));
     u.rate = .9; u.pitch = natural ? 1.15 : 1.35;
     speechSynthesis.speak(u);
-  }catch(e){} }, delay||0);
+  }catch(e){}
 }
-function hush(){ clearTimeout(sayTimer); if(canSpeak){ try{ speechSynthesis.cancel(); }catch(e){} } }
+function hush(){ clearTimeout(sayTimer); clearTimeout(sayTimer2); if(canSpeak){ try{ speechSynthesis.cancel(); }catch(e){} } }
 
 /* ---------- Écrans ---------- */
 function show(id){ ['hub','home','world','levels','memo','puz','cnt'].forEach(s=>{ $('#'+s).hidden = s!==id; }); }
@@ -1536,7 +1546,11 @@ $('#cAns').addEventListener('click', e=>{
     say(c.tries > 1 ? `Comptons ensemble ! Touche les ${c.kind.p} un par un.` : `Hmm, pas tout à fait ! Compte encore les ${c.kind.p}.`);
   }
 });
-$('#cntAsk').addEventListener('click', ()=>{ audio(); sfx.tap(); askQ(); });
+$('#cntAsk').addEventListener('click', ()=>{
+  audio(); sfx.tap(); askQ();
+  const b = $('#cntAsk'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+  $('#cField').querySelectorAll('.baby').forEach((x,k)=>{ x.style.animationDelay = (k*.05)+'s'; x.classList.remove('hop'); void x.offsetWidth; x.classList.add('hop'); });
+});
 $('#cntBack').addEventListener('click', ()=>{ sfx.tap(); openLevels('cnt'); });
 
 /* ---------- Registre des jeux ---------- */
