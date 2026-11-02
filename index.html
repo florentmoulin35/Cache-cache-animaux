@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#bfe9f7">
-<title>Cache-cache animaux</title>
+<title>Les jeux de Louis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander:wght@600;800&display=swap">
 <style>
@@ -74,7 +74,7 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 .bubble{bottom:-6%;width:var(--s);height:var(--s);border-radius:50%;border:2px solid rgba(255,255,255,.7);background:rgba(255,255,255,.15);animation:rise linear infinite}
 .topbar{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:5;
   padding:max(10px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
-#slots{display:flex;gap:clamp(4px,1.2vmin,12px);background:rgba(255,255,255,.55);padding:6px clamp(6px,1.5vmin,14px);border-radius:999px;min-width:0}
+#slots,#mSlots{display:flex;gap:clamp(4px,1.2vmin,12px);background:rgba(255,255,255,.55);padding:6px clamp(6px,1.5vmin,14px);border-radius:999px;min-width:0}
 .slot{--z:clamp(38px,9vmin,70px);width:var(--z);height:var(--z);border-radius:50%;background:rgba(255,255,255,.7);display:grid;place-items:center;font-size:calc(var(--z)*.62);line-height:1}
 .slot span{filter:brightness(0) opacity(.28);transition:filter .3s}
 .slot.on{background:var(--gold);box-shadow:0 0 0 3px var(--gold2) inset;animation:pop .5s}
@@ -210,6 +210,65 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 .pin{font:inherit;font-size:17px;padding:10px 12px;border-radius:12px;border:2px solid var(--sky);background:var(--white);color:var(--ink);-webkit-user-select:text;user-select:text;width:100%;box-sizing:border-box}
 .pnote{font-size:14px;opacity:.8}
 
+/* ---------- Menu des jeux ---------- */
+#hub{background:radial-gradient(120% 90% at 50% 0%,var(--white) 0%,#ffeec2 45%,#ffd6e2 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,5vmin,48px);
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-sizing:border-box}
+#games{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(20px,6vmin,64px)}
+.game-btn{--g:clamp(140px,38vmin,290px);position:relative;width:var(--g);height:var(--g);border-radius:28%;border:7px solid var(--white);box-sizing:border-box;
+  background:radial-gradient(circle at 32% 28%,var(--c2),var(--c1) 72%);box-shadow:0 10px 0 var(--shade);display:grid;place-items:center;overflow:hidden;transition:transform .15s}
+.game-btn:active{transform:scale(.94)}
+.game-btn:nth-child(1){animation:bob 3s ease-in-out infinite}
+.game-btn:nth-child(2){animation:bob 3s .5s ease-in-out infinite}
+.gi-tree{font-size:calc(var(--g)*.6);line-height:1;transform:translateY(4%)}
+.gi-fox{position:absolute;right:12%;bottom:10%;font-size:calc(var(--g)*.3);line-height:1;animation:peek 2.4s ease-in-out infinite}
+.gi-cards{position:relative;width:70%;height:70%}
+.gi-cards span{position:absolute;top:8%;width:52%;height:78%;border-radius:14%;border:4px solid var(--white);box-sizing:border-box;display:grid;place-items:center;
+  font-size:calc(var(--g)*.2);line-height:1;box-shadow:0 5px 0 var(--shade);background:radial-gradient(circle at 50% 38%,#fff6c8,var(--gold) 80%)}
+.gi-cards span:nth-child(1){left:0;transform:rotate(-10deg)}
+.gi-cards span:nth-child(2){right:0;transform:rotate(10deg);animation:wig 2.8s ease-in-out infinite}
+@media (max-aspect-ratio:3/4){#games{flex-direction:column}.game-btn{--g:clamp(140px,min(64vw,30vh),300px)}}
+
+/* ---------- Memory ---------- */
+#memo{background:linear-gradient(#cfe9ff,#efe7ff 60%,#ffe6f0)}
+.back{position:absolute;left:max(14px,env(safe-area-inset-left,0px));top:max(14px,env(safe-area-inset-top,0px));z-index:6}
+#mLevels{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,4vmin,36px);
+  padding:calc(var(--rb) + 24px) 16px max(16px,env(safe-area-inset-bottom,0px));box-sizing:border-box}
+.mtitle{font-size:clamp(46px,11vmin,96px);line-height:1;display:flex;gap:2vmin}
+.mtitle span{display:inline-block;animation:bob 2.4s ease-in-out infinite}
+.mtitle span:nth-child(2){animation-delay:.4s}
+#lvls{display:grid;grid-template-columns:repeat(4,auto);gap:clamp(12px,3.5vmin,34px);justify-content:center}
+@media (max-aspect-ratio:1/1){#lvls{grid-template-columns:repeat(2,auto)}}
+.lwrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.lvl{--l:clamp(112px,25vmin,200px);width:var(--l);height:var(--l);border-radius:24%;border:6px solid var(--white);box-sizing:border-box;box-shadow:0 8px 0 var(--shade);
+  background:radial-gradient(circle at 32% 28%,var(--c2),var(--c1) 75%);display:grid;place-items:center;transition:transform .15s}
+.lvl:active{transform:scale(.94)}
+.mini{display:grid;grid-template-columns:repeat(var(--mc),1fr);gap:calc(var(--l)*.035);width:calc(var(--l)*var(--mwf))}
+.mini i{aspect-ratio:4/5;border-radius:18%;background:var(--white);box-shadow:0 2px 0 var(--shade)}
+.lstars{height:26px;font-size:22px;line-height:1;letter-spacing:2px}
+#mBoard{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+  padding:0 max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+#mGrid{display:grid;justify-content:center}
+.mc{width:var(--mw);height:calc(var(--mw)*1.25);perspective:900px;position:relative}
+.mc .in{position:absolute;inset:0;transition:transform .45s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d}
+.mc.up .in{transform:rotateY(180deg)}
+.mc .f,.mc .b{position:absolute;inset:0;border-radius:16%/13%;border:4px solid var(--white);box-sizing:border-box;box-shadow:0 5px 0 var(--shade);
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;display:grid;place-items:center;line-height:1}
+.mc .b{background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.35) 0 22%,transparent 23%),
+  repeating-linear-gradient(45deg,#8f6bff 0 10px,#7a55f0 10px 20px);font-size:calc(var(--mw)*.36)}
+.mc .f{transform:rotateY(180deg);background:radial-gradient(circle at 50% 38%,var(--c2),var(--c1) 80%);font-size:calc(var(--mw)*.6)}
+.mc .f span{filter:drop-shadow(0 3px 0 rgba(0,0,0,.15))}
+.mc.done .f{border-color:var(--gold);box-shadow:0 0 0 4px var(--gold2),0 5px 0 4px var(--shade)}
+.mc.match{animation:pop .55s}
+.mc.match .f span{animation:hop .5s .1s 2}
+.mc.no{animation:shake .45s}
+.mc.deal{animation:deal .5s both}
+#mSlots{flex-wrap:wrap;justify-content:center}
+#mSlots .slot{--z:clamp(30px,7vmin,56px)}
+#mWin{background:radial-gradient(120% 90% at 50% 40%,#fff6c8,#b98cff 75%);overflow:hidden;gap:clamp(10px,2.5vmin,26px)}
+.mdance{flex-wrap:wrap;justify-content:center;max-width:min(92vw,700px);row-gap:1vmin}
+.mstars{position:relative;font-size:clamp(40px,10vmin,90px);line-height:1;animation:pop .7s .5s both}
+
 @keyframes dance{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-28%) rotate(8deg)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes shakeL{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg) translateX(-5px)}75%{transform:rotate(8deg) translateX(5px)}}
@@ -242,8 +301,22 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 </head>
 <body>
 
-<!-- Accueil -->
-<section id="home" class="screen">
+<!-- Menu des jeux -->
+<section id="hub" class="screen" hidden>
+  <h1 class="title" id="hubTitle"><span>Les jeux</span> <span>de Louis</span></h1>
+  <div id="games">
+    <button class="game-btn" id="goHide" style="--c1:#3f9a4a;--c2:#c9f0b5" aria-label="Cache-cache animaux"><span class="gi-tree">🌳</span><span class="gi-fox">🦊</span></button>
+    <button class="game-btn" id="goMemo" style="--c1:#7a55f0;--c2:#e3d6ff" aria-label="Memory des animaux"><span class="gi-cards"><span>🐼</span><span>🐼</span></span></button>
+  </div>
+  <div class="home-bar">
+    <button class="rbtn" id="soundHub" aria-label="Son">🔊</button>
+  </div>
+  <button class="parent-btn" id="parentHub" aria-label="Espace parents">⚙️</button>
+</section>
+
+<!-- Cache-cache : choix du monde -->
+<section id="home" class="screen" hidden>
+  <button class="rbtn back" id="hideBack" aria-label="Menu des jeux">🏠</button>
   <h1 class="title"><span>Cache-cache</span> <span>animaux</span></h1>
   <div id="worlds"></div>
   <div class="home-bar">
@@ -260,6 +333,20 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
     <button class="rbtn" id="homeBtn" aria-label="Accueil">🏠</button>
     <div id="slots"></div>
     <button class="rbtn" id="albumWorld" aria-label="Album">📖</button>
+  </div>
+</section>
+
+<!-- Memory -->
+<section id="memo" class="screen" hidden>
+  <div id="mLevels">
+    <div class="mtitle"><span>🐼</span><span>🐼</span></div>
+    <div id="lvls"></div>
+  </div>
+  <div id="mBoard" hidden><div id="mGrid"></div></div>
+  <div class="topbar">
+    <button class="rbtn" id="memoBack" aria-label="Retour">🏠</button>
+    <div id="mSlots" class="slotsbar" hidden></div>
+    <span style="width:var(--rb)"></span>
   </div>
 </section>
 
@@ -288,6 +375,20 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
     <button class="rbtn" id="celAgain" aria-label="Rejouer">🔁</button>
     <button class="rbtn" id="celAlbum" aria-label="Album">📖</button>
     <button class="rbtn next" id="celNext" aria-label="Continuer" hidden>▶️</button>
+  </div>
+</div>
+
+<!-- Memory gagné -->
+<div id="mWin" class="overlay" hidden>
+  <div class="rays"></div>
+  <div class="rain" id="mwRain"></div>
+  <p class="bravo" id="mwTitle">Bravo !</p>
+  <div class="dance mdance" id="mwDance"></div>
+  <div class="mstars" id="mwStars">⭐</div>
+  <div class="row">
+    <button class="rbtn" id="mwHome" aria-label="Retour">🏠</button>
+    <button class="rbtn" id="mwAgain" aria-label="Rejouer">🔁</button>
+    <button class="rbtn next" id="mwNext" aria-label="Jeu plus grand">▶️</button>
   </div>
 </div>
 
@@ -331,7 +432,8 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
     <select id="voiceSel" class="pin"></select>
     <button class="pbtn" id="voiceTest">▶ Écouter la voix</button>
     <p class="pnote">Les voix viennent de l'appareil. Les plus naturelles ont souvent « Natural », « Google », « Premium » ou « Amélioré » dans leur nom. Sur iPad : Réglages → Accessibilité → Contenu énoncé → Voix → Français, puis télécharger une voix « Premium ». Dans Microsoft Edge, la voix « Eloise » est une voix d'enfant.</p>
-    <p>Dans chaque monde, 5 animaux sont cachés sous 8 objets. Chaque animal trouvé donne une carte. Les 5 cartes d'un monde donnent sa carte spéciale. Les 4 cartes spéciales ouvrent le monde secret des océans. Si l'enfant cherche longtemps, un objet bouge pour l'aider.</p>
+    <p><b>Cache-cache</b> : dans chaque monde, 5 animaux sont cachés sous 8 objets. Chaque animal trouvé donne une carte. Les 5 cartes d'un monde donnent sa carte spéciale. Les 4 cartes spéciales ouvrent le monde secret des océans. Si l'enfant cherche longtemps, un objet bouge pour l'aider.</p>
+    <p><b>Memory</b> : 4 tailles de jeu (6, 8, 12 et 16 cartes). Les animaux sont montrés quelques secondes au début, puis cachés. Chaque partie gagnée donne une étoile. Les animaux des océans n'apparaissent qu'une fois le monde secret ouvert.</p>
     <button class="pbtn hold" id="resetBtn"><i></i><span>Maintenir appuyé pour tout effacer</span></button>
     <button class="pbtn" id="parentClose">Fermer</button>
   </div>
@@ -339,8 +441,8 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 
 <!-- Écran de départ -->
 <div id="splash" class="overlay">
-  <div class="peek"><span>🐧</span><span>🦊</span><span>🐒</span><span>🐫</span><span>🐙</span></div>
-  <h1 class="title"><span>Cache-cache</span> <span>animaux</span></h1>
+  <div class="peek"><span>🐧</span><span>🦊</span><span>🐘</span><span>🐫</span><span>🐼</span></div>
+  <h1 class="title" id="splashTitle"><span>Les jeux</span> <span>de Louis</span></h1>
   <button class="rbtn play" id="playBtn" aria-label="Jouer">▶️</button>
 </div>
 
@@ -383,8 +485,8 @@ const TOTAL = W.reduce((t,w)=>t+w.animals.length+1,0);
 
 /* ---------- Sauvegarde ---------- */
 const KEY = 'cache-cache-animaux-v1';
-const blank = () => ({cards:{}, oceanAnnounced:false, sound:true, name:'Louis', voiceName:''});
-let S = (function(){ try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.cards) return Object.assign(blank(), s); }catch(e){} return blank(); })();
+const blank = () => ({cards:{}, oceanAnnounced:false, sound:true, name:'Louis', voiceName:'', memo:{}});
+let S = (function(){ try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.cards){ const o = Object.assign(blank(), s); if(!o.memo || typeof o.memo !== 'object') o.memo = {}; return o; } }catch(e){} return blank(); })();
 const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
 const has = id => !!S.cards[id];
 const aid = (w,a) => w.id+'-'+a.id;
@@ -463,7 +565,7 @@ function say(txt, delay){
 function hush(){ clearTimeout(sayTimer); if(canSpeak){ try{ speechSynthesis.cancel(); }catch(e){} } }
 
 /* ---------- Écrans ---------- */
-function show(id){ ['home','world'].forEach(s=>{ $('#'+s).hidden = s!==id; }); }
+function show(id){ ['hub','home','world','memo'].forEach(s=>{ $('#'+s).hidden = s!==id; }); }
 
 /* ---------- Décors ---------- */
 function particles(kind, n){
@@ -795,7 +897,7 @@ function renderHome(){
     });
     box.appendChild(wrap);
   });
-  $('#soundBtn').textContent = S.sound ? '🔊' : '🔇';
+  soundIcons();
   if(announce && !unlocking && $('#splash').hidden && $('#unlock').hidden){ unlocking = true; setTimeout(playUnlock, 700); }
 }
 
@@ -847,7 +949,7 @@ $('#tabs').addEventListener('click', e=>{
 $('#zoom').addEventListener('click', ()=>{ $('#zoom').hidden = true; sfx.tap(); });
 $('#albumClose').addEventListener('click', ()=>{ $('#album').hidden = true; sfx.tap(); hush(); if(R && R.done){ goHome(); } else if(R) resetHint(); else renderHome(); });
 
-function hideOverlays(){ ['#album','#zoom','#celebrate','#parent'].forEach(s=>$(s).hidden = true); }
+function hideOverlays(){ ['#album','#zoom','#celebrate','#parent','#mWin'].forEach(s=>$(s).hidden = true); }
 function revealOcean(){ const o = document.querySelector('.wwrap[data-id="ocean"]'); if(o){ o.classList.remove('reveal'); void o.offsetWidth; o.classList.add('reveal'); } }
 
 /* ---------- Confettis ---------- */
@@ -871,8 +973,8 @@ function confetti(){
 $('#playBtn').addEventListener('click', ()=>{
   audio(); sfx.tap();
   $('#splash').hidden = true;
-  if(oceanOpen() && !S.oceanAnnounced){ playUnlock(); return; }
-  say(owned() ? 'Re-bonjour ! Choisis un monde !' : 'Bonjour ! On joue à cache-cache avec les animaux ? Choisis un monde !', 150);
+  goHub();
+  say(`${withName('Bonjour')} ! À quoi on joue ? Touche un jeu !`, 150);
 });
 $('#homeBtn').addEventListener('click', ()=>{ sfx.tap(); goHome(); });
 $('#albumHome').addEventListener('click', openAlbum);
@@ -888,30 +990,190 @@ $('#finAlbum').addEventListener('click', ()=>{ closeFinale(); openAlbum(); });
 $('#nameIn').addEventListener('input', e=>{ S.name = e.target.value; save(); });
 $('#voiceSel').addEventListener('change', e=>{ S.voiceName = e.target.value; save(); pickVoice(); });
 $('#voiceTest').addEventListener('click', ()=>{ audio(); const was = S.sound; S.sound = true; say(`${withName('Bravo')} ! Tu as terminé le monde des neiges !`); S.sound = was; });
-$('#soundBtn').addEventListener('click', ()=>{
-  S.sound = !S.sound; save(); $('#soundBtn').textContent = S.sound ? '🔊' : '🔇';
+['#soundBtn','#soundHub'].forEach(id=>$(id).addEventListener('click', ()=>{
+  S.sound = !S.sound; save(); soundIcons();
   if(S.sound){ audio(); sfx.tap(); say('Le son est allumé !'); } else hush();
-});
-$('#parentBtn').addEventListener('click', ()=>{
-  $('#pStats').textContent = `Progression : ${owned()} cartes sur ${TOTAL}. Monde secret : ${oceanOpen() ? 'ouvert' : 'encore fermé'}.`;
+}));
+['#parentBtn','#parentHub'].forEach(id=>$(id).addEventListener('click', ()=>{
+  const stars = LV.reduce((t,l,i)=>t+(S.memo[i]||0),0);
+  $('#pStats').textContent = `Cache-cache : ${owned()} cartes sur ${TOTAL}, monde secret ${oceanOpen() ? 'ouvert' : 'encore fermé'}. Memory : ${stars} partie${stars>1?'s':''} gagnée${stars>1?'s':''}.`;
   $('#nameIn').value = S.name || '';
   pickVoice();
   $('#parent').hidden = false;
-});
-$('#parentClose').addEventListener('click', ()=>{ $('#parent').hidden = true; });
+}));
+$('#parentClose').addEventListener('click', ()=>{ $('#parent').hidden = true; renderHub(); if(!$('#memo').hidden && !$('#mLevels').hidden) renderLevels(); });
 (function(){
   const b = $('#resetBtn'), bar = b.querySelector('i'); let t = 0, start = 0, raf = 0;
   const stop = () => { cancelAnimationFrame(raf); bar.style.transform = 'scaleX(0)'; };
   const tick = now => { const p = Math.min(1,(now-start)/2000); bar.style.transform = `scaleX(${p})`;
-    if(p >= 1){ S = Object.assign(blank(), {name:S.name, voiceName:S.voiceName, sound:S.sound}); save(); stop(); b.querySelector('span').textContent = 'Progression effacée'; renderHome(); setTimeout(()=>{ b.querySelector('span').textContent = 'Maintenir appuyé pour tout effacer'; }, 2000); return; }
+    if(p >= 1){ S = Object.assign(blank(), {name:S.name, voiceName:S.voiceName, sound:S.sound}); save(); stop(); b.querySelector('span').textContent = 'Progression effacée'; renderHome(); renderLevels(); setTimeout(()=>{ b.querySelector('span').textContent = 'Maintenir appuyé pour tout effacer'; }, 2000); return; }
     raf = requestAnimationFrame(tick); };
   b.addEventListener('pointerdown', e=>{ e.preventDefault(); start = performance.now(); raf = requestAnimationFrame(tick); });
   ['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev, stop));
 })();
+
+/* ---------- Menu des jeux ---------- */
+function soundIcons(){ ['#soundBtn','#soundHub'].forEach(id=>{ $(id).textContent = S.sound ? '🔊' : '🔇'; }); }
+function renderHub(){
+  const n = kid();
+  $('#hubTitle').innerHTML = n ? `<span>Les jeux</span> <span>de ${n.replace(/[<&]/g,'')}</span>` : '<span>Les petits</span> <span>jeux</span>';
+  $('#splashTitle').innerHTML = $('#hubTitle').innerHTML;
+  soundIcons();
+}
+function goHub(){
+  hush(); clearHint(); clearTimeout(nextT); hideOverlays(); stopMemo();
+  R = null; $('#scene').innerHTML = '';
+  renderHub(); show('hub');
+}
+$('#goHide').addEventListener('click', ()=>{
+  audio(); sfx.tap();
+  renderHome(); show('home');
+  if(oceanOpen() && !S.oceanAnnounced){ if(!unlocking){ unlocking = true; playUnlock(); } return; }
+  say(owned() ? 'Cache-cache ! Choisis un monde !' : 'On joue à cache-cache avec les animaux ? Choisis un monde !', 150);
+});
+$('#goMemo').addEventListener('click', ()=>{ audio(); sfx.tap(); openLevels(); say('Le jeu de mémory ! Choisis un jeu : petit, moyen ou grand !', 150); });
+$('#hideBack').addEventListener('click', ()=>{ sfx.tap(); goHub(); });
+
+/* ---------- Memory ---------- */
+const LV = [
+  {pairs:3, cols:3, c1:'#3fb37f', c2:'#d4f7e3', say:'Le petit jeu ! Trois paires !', peek:2600},
+  {pairs:4, cols:4, c1:'#3d9be0', c2:'#d6edff', say:'Quatre paires !', peek:3000},
+  {pairs:6, cols:4, c1:'#ef8a3c', c2:'#ffe7cc', say:'Six paires ! Un grand jeu !', peek:3800},
+  {pairs:8, cols:4, c1:'#d9507a', c2:'#ffd9e6', say:'Huit paires ! Le très grand jeu !', peek:4600}
+];
+const MATCH = [n=>`Bravo ! Deux fois ${n} !`, n=>`Oui ! C'est pareil ! ${cap(n)} !`, n=>`Super ! Tu as trouvé ${n} et ${n} !`];
+const MISS = ['Oh, ce n\'est pas pareil ! Essaie encore !', 'Pas pareil ! Cherche encore !', 'Presque ! Essaie encore !'];
+let M = null, memoT = [];
+const later = (f,ms) => { memoT.push(setTimeout(f,ms)); };
+function stopMemo(){ memoT.forEach(clearTimeout); memoT = []; M = null; $('#mGrid').innerHTML = ''; }
+function openLevels(){
+  hush(); hideOverlays(); stopMemo();
+  $('#mBoard').hidden = true; $('#mSlots').hidden = true; $('#mLevels').hidden = false;
+  renderLevels(); show('memo');
+}
+function renderLevels(){
+  $('#lvls').innerHTML = LV.map((l,i)=>{
+    const won = S.memo[i]||0, rows = l.pairs*2/l.cols;
+    return `<div class="lwrap"><button class="lvl" data-i="${i}" style="--c1:${l.c1};--c2:${l.c2}" aria-label="${l.pairs*2} cartes">
+      <span class="mini" style="--mc:${l.cols};--mwf:${Math.min(.72, .7*l.cols/(rows*1.25)).toFixed(2)}">${'<i></i>'.repeat(l.pairs*2)}</span></button>
+      <span class="lstars">${'⭐'.repeat(Math.min(won,3))}</span></div>`;
+  }).join('');
+}
+$('#lvls').addEventListener('click', e=>{
+  const b = e.target.closest('.lvl'); if(!b) return;
+  audio(); sfx.tap(); startMemo(+b.dataset.i);
+});
+function memoPool(){
+  return W.filter(w=>!w.secret || oceanOpen()).flatMap(w=>w.animals.map(a=>({key:w.id+'-'+a.id, e:a.e, n:a.n, w})));
+}
+function startMemo(i){
+  hush(); hideOverlays(); stopMemo();
+  const l = LV[i];
+  const picks = shuffle(memoPool()).slice(0, l.pairs);
+  const deck = shuffle(picks.concat(picks).map(p=>Object.assign({}, p)));
+  M = { lvl:i, cards:[], first:null, lock:true, found:0, pairs:l.pairs };
+  const grid = $('#mGrid'); grid.innerHTML = '';
+  deck.forEach((p,k)=>{
+    const el = document.createElement('button');
+    el.className = 'mc up deal';
+    el.style.animationDelay = (k*.06).toFixed(2)+'s';
+    el.setAttribute('aria-label','Carte');
+    el.innerHTML = `<span class="in"><span class="b">🐾</span><span class="f" style="--c1:${p.w.c1};--c2:${p.w.c2}"><span>${p.e}</span></span></span>`;
+    const c = Object.assign(p, {el, up:true, done:false});
+    el.addEventListener('click', ()=>flipCard(c));
+    grid.appendChild(el);
+    M.cards.push(c);
+  });
+  $('#mSlots').innerHTML = picks.map(p=>`<span class="slot" data-k="${p.key}"><span>${p.e}</span></span>`).join('');
+  $('#mLevels').hidden = true; $('#mBoard').hidden = false; $('#mSlots').hidden = false;
+  show('memo');
+  layoutMemo();
+  say('Regarde bien les animaux… ', 200);
+  const m = M;
+  later(()=>{
+    if(m !== M) return;
+    m.cards.forEach(c=>{ c.up = false; c.el.classList.remove('up','deal'); c.el.style.animationDelay = ''; });
+    sfx.lift();
+    later(()=>{ if(m === M){ m.lock = false; say('À toi ! Trouve les animaux pareils !'); } }, 450);
+  }, 800 + l.peek);
+}
+function layoutMemo(){
+  if(!M || $('#memo').hidden) return;
+  const b = $('#mBoard'), bw = b.clientWidth, bh = b.clientHeight; if(!bw || !bh) return;
+  const topH = $('#memo .topbar').offsetHeight + 8;
+  b.style.paddingTop = topH + 'px';
+  const cs = getComputedStyle(b);
+  const aw = bw - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  const ah = bh - topH - parseFloat(cs.paddingBottom);
+  const n = M.cards.length, gap = Math.round(Math.max(8, Math.min(18, Math.min(bw,bh)*.022)));
+  let best = {w:0, cols:2};
+  for(let cols=2; cols<=n; cols++){
+    if(n % cols) continue;
+    const rows = n/cols;
+    const w = Math.min((aw - (cols-1)*gap)/cols, ((ah - (rows-1)*gap)/rows)/1.25);
+    if(w > best.w) best = {w, cols};
+  }
+  const w = Math.floor(Math.min(best.w, 190));
+  const g = $('#mGrid');
+  g.style.gridTemplateColumns = `repeat(${best.cols}, ${w}px)`;
+  g.style.gap = gap+'px';
+  g.style.setProperty('--mw', w+'px');
+}
+window.addEventListener('resize', layoutMemo);
+function flipCard(c){
+  audio();
+  if(!M || M.lock || c.up || c.done) return;
+  c.up = true; c.el.classList.add('up'); c.el.setAttribute('aria-label', label(c.n));
+  sfx.tap();
+  if(!M.first){ M.first = c; say(cap(c.n) + ' !', 120); return; }
+  const a = M.first, m = M; M.first = null; m.lock = true;
+  if(a.key === c.key){
+    say(pick(MATCH)(c.n), 250);
+    later(()=>{
+      if(m !== M) return;
+      [a,c].forEach(x=>{ x.done = true; x.el.classList.add('done','match'); });
+      sfx.found();
+      const slot = document.querySelector(`#mSlots .slot[data-k="${c.key}"]`); if(slot) slot.classList.add('on');
+      m.found++; m.lock = false;
+      if(m.found >= m.pairs){ m.lock = true; later(()=>memoWin(m), 1100); }
+    }, 420);
+  } else {
+    say(cap(c.n) + ' !', 120);
+    later(()=>{
+      if(m !== M) return;
+      [a,c].forEach(x=>{ x.el.classList.remove('no'); void x.el.offsetWidth; x.el.classList.add('no'); });
+      sfx.empty();
+      if(Math.random() < .7) say(pick(MISS));
+    }, 1000);
+    later(()=>{
+      if(m !== M) return;
+      [a,c].forEach(x=>{ x.up = false; x.el.classList.remove('up','no'); x.el.setAttribute('aria-label','Carte'); });
+      m.lock = false;
+    }, 1900);
+  }
+}
+function memoWin(m){
+  if(m !== M) return;
+  S.memo[m.lvl] = (S.memo[m.lvl]||0) + 1; save();
+  const seen = []; m.cards.forEach(c=>{ if(!seen.includes(c.e)) seen.push(c.e); });
+  $('#mwTitle').textContent = withName('Bravo') + ' !';
+  $('#mwDance').innerHTML = seen.map(e=>`<span>${e}</span>`).join('');
+  $('#mwStars').textContent = '⭐'.repeat(Math.min(S.memo[m.lvl],3));
+  $('#mwRain').innerHTML = particles('⭐', 10) + particles('✨', 10);
+  $('#mwNext').hidden = m.lvl >= LV.length-1;
+  $('#mWin').hidden = false;
+  sfx.fanfare(); confetti();
+  say(`${withName('Bravo')} ! Tu as trouvé toutes les paires ! Tu gagnes une étoile !`, 700);
+}
+$('#memoBack').addEventListener('click', ()=>{ sfx.tap(); if($('#mLevels').hidden) openLevels(); else goHub(); });
+$('#mwHome').addEventListener('click', ()=>{ sfx.tap(); openLevels(); });
+$('#mwAgain').addEventListener('click', ()=>{ sfx.tap(); startMemo(M ? M.lvl : 0); });
+$('#mwNext').addEventListener('click', ()=>{ sfx.tap(); const i = M ? Math.min(M.lvl+1, LV.length-1) : 0; startMemo(i); say(LV[i].say + ' Regarde bien les animaux…', 200); });
+
 document.addEventListener('contextmenu', e=>e.preventDefault());
 document.addEventListener('dblclick', e=>e.preventDefault());
 
-renderHome();
+renderHome(); renderHub();
 })();
 </script>
 </body>
