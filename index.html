@@ -74,7 +74,7 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 .bubble{bottom:-6%;width:var(--s);height:var(--s);border-radius:50%;border:2px solid rgba(255,255,255,.7);background:rgba(255,255,255,.15);animation:rise linear infinite}
 .topbar{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:5;
   padding:max(10px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
-#slots,#mSlots{display:flex;gap:clamp(4px,1.2vmin,12px);background:rgba(255,255,255,.55);padding:6px clamp(6px,1.5vmin,14px);border-radius:999px;min-width:0}
+#slots,#mSlots,#cDots{display:flex;gap:clamp(4px,1.2vmin,12px);background:rgba(255,255,255,.55);padding:6px clamp(6px,1.5vmin,14px);border-radius:999px;min-width:0}
 .slot{--z:clamp(38px,9vmin,70px);width:var(--z);height:var(--z);border-radius:50%;background:rgba(255,255,255,.7);display:grid;place-items:center;font-size:calc(var(--z)*.62);line-height:1}
 .slot span{filter:brightness(0) opacity(.28);transition:filter .3s}
 .slot.on{background:var(--gold);box-shadow:0 0 0 3px var(--gold2) inset;animation:pop .5s}
@@ -214,12 +214,23 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 #hub{background:radial-gradient(120% 90% at 50% 0%,var(--white) 0%,#ffeec2 45%,#ffd6e2 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,5vmin,48px);
   padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-sizing:border-box}
-#games{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(20px,6vmin,64px)}
-.game-btn{--g:clamp(140px,38vmin,290px);position:relative;width:var(--g);height:var(--g);border-radius:28%;border:7px solid var(--white);box-sizing:border-box;
+#games{display:grid;grid-template-columns:repeat(2,auto);justify-content:center;align-items:center;gap:clamp(14px,4vmin,44px)}
+@media (min-aspect-ratio:3/2){#games{grid-template-columns:repeat(4,auto)}}
+.game-btn{--g:clamp(104px,min(40vw,29vh),260px);position:relative;width:var(--g);height:var(--g);border-radius:28%;border:7px solid var(--white);box-sizing:border-box;
   background:radial-gradient(circle at 32% 28%,var(--c2),var(--c1) 72%);box-shadow:0 10px 0 var(--shade);display:grid;place-items:center;overflow:hidden;transition:transform .15s}
 .game-btn:active{transform:scale(.94)}
 .game-btn:nth-child(1){animation:bob 3s ease-in-out infinite}
 .game-btn:nth-child(2){animation:bob 3s .5s ease-in-out infinite}
+.game-btn:nth-child(3){animation:bob 3s 1s ease-in-out infinite}
+.game-btn:nth-child(4){animation:bob 3s 1.5s ease-in-out infinite}
+@media (min-aspect-ratio:3/2){.game-btn{--g:clamp(96px,min(21vw,50vh),250px)}}
+.gi-puz{position:relative;font-size:calc(var(--g)*.56);line-height:1}
+.gi-puz b{position:absolute;inset:-6%;background:linear-gradient(90deg,transparent 48.5%,var(--white) 48.5% 51.5%,transparent 51.5%),linear-gradient(transparent 48.5%,var(--white) 48.5% 51.5%,transparent 51.5%)}
+.gi-badge{position:absolute;right:7%;bottom:7%;font-size:calc(var(--g)*.24);line-height:1;animation:wig 2.6s ease-in-out infinite}
+.gi-cnt{position:absolute;top:14%;left:0;right:0;display:flex;justify-content:center;gap:2%;font-size:calc(var(--g)*.24);line-height:1}
+.gi-cnt span{display:inline-block;animation:hop 1.2s ease-in-out infinite}
+.gi-cnt span:nth-child(2){animation-delay:.2s}.gi-cnt span:nth-child(3){animation-delay:.4s}
+.gi-hand{position:absolute;bottom:10%;font-size:calc(var(--g)*.36);line-height:1;animation:wig 2.4s ease-in-out infinite}
 .gi-tree{font-size:calc(var(--g)*.6);line-height:1;transform:translateY(4%)}
 .gi-fox{position:absolute;right:12%;bottom:10%;font-size:calc(var(--g)*.3);line-height:1;animation:peek 2.4s ease-in-out infinite}
 .gi-cards{position:relative;width:70%;height:70%}
@@ -227,9 +238,9 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
   font-size:calc(var(--g)*.2);line-height:1;box-shadow:0 5px 0 var(--shade);background:radial-gradient(circle at 50% 38%,#fff6c8,var(--gold) 80%)}
 .gi-cards span:nth-child(1){left:0;transform:rotate(-10deg)}
 .gi-cards span:nth-child(2){right:0;transform:rotate(10deg);animation:wig 2.8s ease-in-out infinite}
-@media (max-aspect-ratio:3/4){#games{flex-direction:column}.game-btn{--g:clamp(140px,min(64vw,30vh),300px)}}
 
 /* ---------- Memory ---------- */
+#levels{background:linear-gradient(#cfe9ff,#efe7ff 60%,#ffe6f0)}
 #memo{background:linear-gradient(#cfe9ff,#efe7ff 60%,#ffe6f0)}
 .back{position:absolute;left:max(14px,env(safe-area-inset-left,0px));top:max(14px,env(safe-area-inset-top,0px));z-index:6}
 #mLevels{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,4vmin,36px);
@@ -265,6 +276,46 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 .mc.deal{animation:deal .5s both}
 #mSlots{flex-wrap:wrap;justify-content:center}
 #mSlots .slot{--z:clamp(30px,7vmin,56px)}
+/* ---------- Puzzle ---------- */
+#puz{background:linear-gradient(#fff3d6,#ffe0b8 55%,#ffd0c2)}
+#pzArea{position:absolute;inset:0}
+#pzBoard{position:absolute;border-radius:18px;background:rgba(255,255,255,.6);box-shadow:0 0 0 6px var(--white),0 10px 0 6px var(--shade)}
+#pzGhost,#pzFull{position:absolute;inset:0;border-radius:inherit;background-size:100% 100%}
+#pzGhost{opacity:.22;filter:grayscale(.4)}
+#pzFull{opacity:0;transition:opacity .4s}
+#pzFull.on{opacity:1;animation:pzdance 1.1s .3s ease-in-out 3}
+#pzSlots{position:absolute;inset:0;display:grid}
+#pzSlots i{border:2px dashed rgba(255,255,255,.95);box-sizing:border-box}
+#pzSlots i.glow{background:rgba(255,203,61,.45);animation:pulse .5s 3}
+.pc{position:absolute;left:0;top:0;border-radius:10px;background-repeat:no-repeat;box-shadow:0 5px 0 var(--shade),0 0 0 3px var(--white);touch-action:none;cursor:grab;
+  transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .2s;will-change:transform}
+.pc.drag{transition:none;box-shadow:0 14px 18px rgba(0,0,0,.25),0 0 0 4px var(--gold);cursor:grabbing}
+.pc.placed{box-shadow:none;border-radius:0;pointer-events:none}
+.pc.wiggle{animation:wig .35s 4}
+#pzArea.done .pc{opacity:0;transition:opacity .4s}
+@keyframes pzdance{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-6deg) scale(1.06)}50%{transform:translateY(-6%) scale(1.08)}75%{transform:rotate(6deg) scale(1.06)}}
+
+/* ---------- Compter ---------- */
+#cnt{background:linear-gradient(#a9e0f7,#dff4ff 45%,#9ad77f 46%,#7cc566)}
+#cScene{position:absolute;left:0;right:0;top:0;bottom:0}
+#cField{position:absolute}
+.baby{position:absolute;transform:translate(-50%,-50%);line-height:1;display:grid;place-items:center;transition:transform .2s;animation:deal .45s both}
+.baby .bn{position:absolute;right:-8%;top:-10%;min-width:1.6em;height:1.6em;border-radius:999px;background:var(--gold);color:var(--ink);font-size:.3em;display:grid;place-items:center;
+  box-shadow:0 0 0 3px var(--white);transform:scale(0);transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.baby.counted .bn{transform:scale(1)}
+.baby.hop{animation:hop .5s ease-in-out 2}
+#cAns{position:absolute;display:flex;justify-content:center;align-items:center;gap:clamp(10px,3vmin,26px);z-index:4}
+.ans{background:var(--white);border-radius:22px;box-shadow:0 7px 0 var(--shade);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px;box-sizing:border-box;transition:transform .15s}
+.ans:active{transform:scale(.95)}
+.ans .hands{display:flex;gap:2px;align-items:flex-end}
+.ans svg{display:block;height:var(--hh);width:auto}
+.ans .num{font-size:calc(var(--hh)*.42);font-weight:800;line-height:1}
+.ans.good{background:#c9f5c0;box-shadow:0 0 0 5px #5cc45a,0 7px 0 var(--shade);animation:pop .5s}
+.ans.no{animation:shake .45s;opacity:.55}
+#cDots .slot{--z:clamp(30px,7vmin,54px)}
+.lvhands svg{height:100%;width:auto}
+@media (max-aspect-ratio:1/1){.lvl{--l:clamp(96px,min(27vw,22vh),200px)}}
+
 #mWin{background:radial-gradient(120% 90% at 50% 40%,#fff6c8,#b98cff 75%);overflow:hidden;gap:clamp(10px,2.5vmin,26px)}
 .mdance{flex-wrap:wrap;justify-content:center;max-width:min(92vw,700px);row-gap:1vmin}
 .mstars{position:relative;font-size:clamp(40px,10vmin,90px);line-height:1;animation:pop .7s .5s both}
@@ -307,6 +358,8 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
   <div id="games">
     <button class="game-btn" id="goHide" style="--c1:#3f9a4a;--c2:#c9f0b5" aria-label="Cache-cache animaux"><span class="gi-tree">🌳</span><span class="gi-fox">🦊</span></button>
     <button class="game-btn" id="goMemo" style="--c1:#7a55f0;--c2:#e3d6ff" aria-label="Memory des animaux"><span class="gi-cards"><span>🐼</span><span>🐼</span></span></button>
+    <button class="game-btn" id="goPuz" style="--c1:#e8963c;--c2:#fff0c4" aria-label="Le petit puzzle"><span class="gi-puz">🦁<b></b></span><span class="gi-badge">🧩</span></button>
+    <button class="game-btn" id="goCnt" style="--c1:#3fa9d9;--c2:#dff4ff" aria-label="Compter les bébés"><span class="gi-cnt"><span>🐥</span><span>🐥</span><span>🐥</span></span><span class="gi-hand">✋</span></button>
   </div>
   <div class="home-bar">
     <button class="rbtn" id="soundHub" aria-label="Son">🔊</button>
@@ -336,17 +389,46 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
   </div>
 </section>
 
-<!-- Memory -->
-<section id="memo" class="screen" hidden>
+<!-- Choix de la taille du jeu (memory, puzzle, compter) -->
+<section id="levels" class="screen" hidden>
+  <button class="rbtn back" id="lvlBack" aria-label="Menu des jeux">🏠</button>
   <div id="mLevels">
-    <div class="mtitle"><span>🐼</span><span>🐼</span></div>
+    <div class="mtitle" id="lvlTitle"></div>
     <div id="lvls"></div>
   </div>
-  <div id="mBoard" hidden><div id="mGrid"></div></div>
+</section>
+
+<!-- Memory -->
+<section id="memo" class="screen" hidden>
+  <div id="mBoard"><div id="mGrid"></div></div>
   <div class="topbar">
     <button class="rbtn" id="memoBack" aria-label="Retour">🏠</button>
-    <div id="mSlots" class="slotsbar" hidden></div>
+    <div id="mSlots" class="slotsbar"></div>
     <span style="width:var(--rb)"></span>
+  </div>
+</section>
+
+<!-- Puzzle -->
+<section id="puz" class="screen" hidden>
+  <div id="pzArea">
+    <div id="pzBoard"><div id="pzGhost"></div><div id="pzSlots"></div><div id="pzFull"></div></div>
+    <div id="pzTray"></div>
+  </div>
+  <div class="topbar">
+    <button class="rbtn" id="puzBack" aria-label="Retour">🏠</button>
+    <span></span>
+    <span style="width:var(--rb)"></span>
+  </div>
+</section>
+
+<!-- Compter les bébés -->
+<section id="cnt" class="screen" hidden>
+  <div id="cScene"><div id="cField"></div></div>
+  <div id="cAns"></div>
+  <div class="topbar">
+    <button class="rbtn" id="cntBack" aria-label="Retour">🏠</button>
+    <div id="cDots" class="slotsbar"></div>
+    <button class="rbtn" id="cntAsk" aria-label="Répéter la question">👂</button>
   </div>
 </section>
 
@@ -433,7 +515,9 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
     <button class="pbtn" id="voiceTest">▶ Écouter la voix</button>
     <p class="pnote">Les voix viennent de l'appareil. Les plus naturelles ont souvent « Natural », « Google », « Premium » ou « Amélioré » dans leur nom. Sur iPad : Réglages → Accessibilité → Contenu énoncé → Voix → Français, puis télécharger une voix « Premium ». Dans Microsoft Edge, la voix « Eloise » est une voix d'enfant.</p>
     <p><b>Cache-cache</b> : dans chaque monde, 5 animaux sont cachés sous 8 objets. Chaque animal trouvé donne une carte. Les 5 cartes d'un monde donnent sa carte spéciale. Les 4 cartes spéciales ouvrent le monde secret des océans. Si l'enfant cherche longtemps, un objet bouge pour l'aider.</p>
-    <p><b>Memory</b> : 4 tailles de jeu (6, 8, 12 et 16 cartes). Les animaux sont montrés quelques secondes au début, puis cachés. Chaque partie gagnée donne une étoile. Les animaux des océans n'apparaissent qu'une fois le monde secret ouvert.</p>
+    <p><b>Puzzle</b> : 3 tailles (4, 6 et 9 pièces) à faire glisser sur le modèle. Une pièce lâchée près de sa place s'y accroche ; ailleurs, elle revient doucement. Si l'enfant hésite, une pièce et sa place clignotent.</p>
+    <p><b>Compter les bébés</b> : la voix demande « Combien de poussins ? » et l'enfant touche la main qui montre le bon nombre de doigts (jusqu'à 5, puis jusqu'à 10). Toucher les bébés les compte à voix haute. 5 questions par partie, pas d'échec possible.</p>
+    <p><b>Memory</b> : 4 tailles de jeu (6, 8, 12 et 16 cartes). Les animaux sont montrés quelques secondes au début, puis cachés. Chaque partie gagnée (dans chaque jeu) donne une étoile. Les animaux des océans n'apparaissent qu'une fois le monde secret ouvert.</p>
     <button class="pbtn hold" id="resetBtn"><i></i><span>Maintenir appuyé pour tout effacer</span></button>
     <button class="pbtn" id="parentClose">Fermer</button>
   </div>
@@ -485,8 +569,8 @@ const TOTAL = W.reduce((t,w)=>t+w.animals.length+1,0);
 
 /* ---------- Sauvegarde ---------- */
 const KEY = 'cache-cache-animaux-v1';
-const blank = () => ({cards:{}, oceanAnnounced:false, sound:true, name:'Louis', voiceName:'', memo:{}});
-let S = (function(){ try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.cards){ const o = Object.assign(blank(), s); if(!o.memo || typeof o.memo !== 'object') o.memo = {}; return o; } }catch(e){} return blank(); })();
+const blank = () => ({cards:{}, oceanAnnounced:false, sound:true, name:'Louis', voiceName:'', memo:{}, puz:{}, cnt:{}});
+let S = (function(){ try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.cards){ const o = Object.assign(blank(), s); ['memo','puz','cnt'].forEach(k=>{ if(!o[k] || typeof o[k] !== 'object') o[k] = {}; }); return o; } }catch(e){} return blank(); })();
 const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
 const has = id => !!S.cards[id];
 const aid = (w,a) => w.id+'-'+a.id;
@@ -565,7 +649,7 @@ function say(txt, delay){
 function hush(){ clearTimeout(sayTimer); if(canSpeak){ try{ speechSynthesis.cancel(); }catch(e){} } }
 
 /* ---------- Écrans ---------- */
-function show(id){ ['hub','home','world','memo'].forEach(s=>{ $('#'+s).hidden = s!==id; }); }
+function show(id){ ['hub','home','world','levels','memo','puz','cnt'].forEach(s=>{ $('#'+s).hidden = s!==id; }); }
 
 /* ---------- Décors ---------- */
 function particles(kind, n){
@@ -995,13 +1079,13 @@ $('#voiceTest').addEventListener('click', ()=>{ audio(); const was = S.sound; S.
   if(S.sound){ audio(); sfx.tap(); say('Le son est allumé !'); } else hush();
 }));
 ['#parentBtn','#parentHub'].forEach(id=>$(id).addEventListener('click', ()=>{
-  const stars = LV.reduce((t,l,i)=>t+(S.memo[i]||0),0);
-  $('#pStats').textContent = `Cache-cache : ${owned()} cartes sur ${TOTAL}, monde secret ${oceanOpen() ? 'ouvert' : 'encore fermé'}. Memory : ${stars} partie${stars>1?'s':''} gagnée${stars>1?'s':''}.`;
+  const won = k => Object.values(S[k]).reduce((t,v)=>t+(+v||0),0);
+  $('#pStats').textContent = `Cache-cache : ${owned()} cartes sur ${TOTAL}, monde secret ${oceanOpen() ? 'ouvert' : 'encore fermé'}. Parties gagnées : memory ${won('memo')}, puzzle ${won('puz')}, compter ${won('cnt')}.`;
   $('#nameIn').value = S.name || '';
   pickVoice();
   $('#parent').hidden = false;
 }));
-$('#parentClose').addEventListener('click', ()=>{ $('#parent').hidden = true; renderHub(); if(!$('#memo').hidden && !$('#mLevels').hidden) renderLevels(); });
+$('#parentClose').addEventListener('click', ()=>{ $('#parent').hidden = true; renderHub(); if(!$('#levels').hidden) renderLevels(); });
 (function(){
   const b = $('#resetBtn'), bar = b.querySelector('i'); let t = 0, start = 0, raf = 0;
   const stop = () => { cancelAnimationFrame(raf); bar.style.transform = 'scaleX(0)'; };
@@ -1021,7 +1105,7 @@ function renderHub(){
   soundIcons();
 }
 function goHub(){
-  hush(); clearHint(); clearTimeout(nextT); hideOverlays(); stopMemo();
+  hush(); clearHint(); clearTimeout(nextT); hideOverlays(); stopAll();
   R = null; $('#scene').innerHTML = '';
   renderHub(); show('hub');
 }
@@ -1031,7 +1115,10 @@ $('#goHide').addEventListener('click', ()=>{
   if(oceanOpen() && !S.oceanAnnounced){ if(!unlocking){ unlocking = true; playUnlock(); } return; }
   say(owned() ? 'Cache-cache ! Choisis un monde !' : 'On joue à cache-cache avec les animaux ? Choisis un monde !', 150);
 });
-$('#goMemo').addEventListener('click', ()=>{ audio(); sfx.tap(); openLevels(); say('Le jeu de mémory ! Choisis un jeu : petit, moyen ou grand !', 150); });
+$('#goMemo').addEventListener('click', ()=>{ audio(); sfx.tap(); openLevels('memo'); say('Le jeu de mémory ! Choisis un jeu : petit, moyen ou grand !', 150); });
+$('#goPuz').addEventListener('click', ()=>{ audio(); sfx.tap(); openLevels('puz'); say('Le petit puzzle ! Choisis : quatre, six ou neuf pièces !', 150); });
+$('#goCnt').addEventListener('click', ()=>{ audio(); sfx.tap(); openLevels('cnt'); say('On compte les bébés animaux ! Choisis : jusqu\'à cinq, ou jusqu\'à dix !', 150); });
+$('#lvlBack').addEventListener('click', ()=>{ sfx.tap(); goHub(); });
 $('#hideBack').addEventListener('click', ()=>{ sfx.tap(); goHub(); });
 
 /* ---------- Memory ---------- */
@@ -1046,23 +1133,52 @@ const MISS = ['Oh, ce n\'est pas pareil ! Essaie encore !', 'Pas pareil ! Cherch
 let M = null, memoT = [];
 const later = (f,ms) => { memoT.push(setTimeout(f,ms)); };
 function stopMemo(){ memoT.forEach(clearTimeout); memoT = []; M = null; $('#mGrid').innerHTML = ''; }
-function openLevels(){
-  hush(); hideOverlays(); stopMemo();
-  $('#mBoard').hidden = true; $('#mSlots').hidden = true; $('#mLevels').hidden = false;
-  renderLevels(); show('memo');
+
+/* ---------- Choix de la taille du jeu ---------- */
+let curGame = 'memo';
+function miniGrid(cols, n, aspect){
+  const rows = Math.ceil(n/cols);
+  return `<span class="mini" style="--mc:${cols};--mwf:${Math.min(.72, .7*cols/(rows*aspect)).toFixed(2)}">${`<i style="aspect-ratio:1/${aspect}"></i>`.repeat(n)}</span>`;
+}
+function stopAll(){ stopMemo(); stopPuz(); stopCnt(); }
+function openLevels(g){
+  if(g) curGame = g;
+  hush(); hideOverlays(); stopAll();
+  renderLevels(); show('levels');
 }
 function renderLevels(){
-  $('#lvls').innerHTML = LV.map((l,i)=>{
-    const won = S.memo[i]||0, rows = l.pairs*2/l.cols;
-    return `<div class="lwrap"><button class="lvl" data-i="${i}" style="--c1:${l.c1};--c2:${l.c2}" aria-label="${l.pairs*2} cartes">
-      <span class="mini" style="--mc:${l.cols};--mwf:${Math.min(.72, .7*l.cols/(rows*1.25)).toFixed(2)}">${'<i></i>'.repeat(l.pairs*2)}</span></button>
+  const G = GAMES[curGame];
+  $('#lvlTitle').innerHTML = G.title.map(e=>`<span>${e}</span>`).join('');
+  $('#lvls').innerHTML = G.levels.map((l,i)=>{
+    const won = S[curGame][i]||0;
+    return `<div class="lwrap"><button class="lvl" data-i="${i}" style="--c1:${l.c1};--c2:${l.c2}" aria-label="${G.label(l)}">${G.icon(l)}</button>
       <span class="lstars">${'⭐'.repeat(Math.min(won,3))}</span></div>`;
   }).join('');
+  $('#lvls').style.gridTemplateColumns = G.levels.length === 4 ? '' : `repeat(${G.levels.length},auto)`;
 }
 $('#lvls').addEventListener('click', e=>{
   const b = e.target.closest('.lvl'); if(!b) return;
-  audio(); sfx.tap(); startMemo(+b.dataset.i);
+  audio(); sfx.tap(); GAMES[curGame].start(+b.dataset.i);
 });
+
+/* ---------- Écran de victoire (commun) ---------- */
+let winCtx = null;
+function showWin(game, lvl, emojis, line){
+  S[game][lvl] = (S[game][lvl]||0) + 1; save();
+  const G = GAMES[game];
+  winCtx = {game, lvl};
+  $('#mwTitle').textContent = withName('Bravo') + ' !';
+  $('#mwDance').innerHTML = emojis.map(e=>`<span>${e}</span>`).join('');
+  $('#mwStars').textContent = '⭐'.repeat(Math.min(S[game][lvl],3));
+  $('#mwRain').innerHTML = particles('⭐', 10) + particles('✨', 10);
+  $('#mwNext').hidden = lvl >= G.levels.length-1;
+  $('#mWin').hidden = false;
+  sfx.fanfare(); confetti();
+  say(`${withName('Bravo')} ! ${line} Tu gagnes une étoile !`, 700);
+}
+$('#mwHome').addEventListener('click', ()=>{ sfx.tap(); openLevels(winCtx ? winCtx.game : curGame); });
+$('#mwAgain').addEventListener('click', ()=>{ sfx.tap(); if(winCtx) GAMES[winCtx.game].start(winCtx.lvl); });
+$('#mwNext').addEventListener('click', ()=>{ sfx.tap(); if(!winCtx) return; const G = GAMES[winCtx.game], i = Math.min(winCtx.lvl+1, G.levels.length-1); G.start(i); });
 function memoPool(){
   return W.filter(w=>!w.secret || oceanOpen()).flatMap(w=>w.animals.map(a=>({key:w.id+'-'+a.id, e:a.e, n:a.n, w})));
 }
@@ -1085,7 +1201,7 @@ function startMemo(i){
     M.cards.push(c);
   });
   $('#mSlots').innerHTML = picks.map(p=>`<span class="slot" data-k="${p.key}"><span>${p.e}</span></span>`).join('');
-  $('#mLevels').hidden = true; $('#mBoard').hidden = false; $('#mSlots').hidden = false;
+  curGame = 'memo';
   show('memo');
   layoutMemo();
   say('Regarde bien les animaux… ', 200);
@@ -1154,21 +1270,280 @@ function flipCard(c){
 }
 function memoWin(m){
   if(m !== M) return;
-  S.memo[m.lvl] = (S.memo[m.lvl]||0) + 1; save();
   const seen = []; m.cards.forEach(c=>{ if(!seen.includes(c.e)) seen.push(c.e); });
-  $('#mwTitle').textContent = withName('Bravo') + ' !';
-  $('#mwDance').innerHTML = seen.map(e=>`<span>${e}</span>`).join('');
-  $('#mwStars').textContent = '⭐'.repeat(Math.min(S.memo[m.lvl],3));
-  $('#mwRain').innerHTML = particles('⭐', 10) + particles('✨', 10);
-  $('#mwNext').hidden = m.lvl >= LV.length-1;
-  $('#mWin').hidden = false;
-  sfx.fanfare(); confetti();
-  say(`${withName('Bravo')} ! Tu as trouvé toutes les paires ! Tu gagnes une étoile !`, 700);
+  showWin('memo', m.lvl, seen, 'Tu as trouvé toutes les paires !');
 }
-$('#memoBack').addEventListener('click', ()=>{ sfx.tap(); if($('#mLevels').hidden) openLevels(); else goHub(); });
-$('#mwHome').addEventListener('click', ()=>{ sfx.tap(); openLevels(); });
-$('#mwAgain').addEventListener('click', ()=>{ sfx.tap(); startMemo(M ? M.lvl : 0); });
-$('#mwNext').addEventListener('click', ()=>{ sfx.tap(); const i = M ? Math.min(M.lvl+1, LV.length-1) : 0; startMemo(i); say(LV[i].say + ' Regarde bien les animaux…', 200); });
+$('#memoBack').addEventListener('click', ()=>{ sfx.tap(); openLevels('memo'); });
+
+/* ---------- Le petit puzzle ---------- */
+const PLV = [
+  {cols:2, rows:2, c1:'#3fb37f', c2:'#d4f7e3'},
+  {cols:3, rows:2, c1:'#3d9be0', c2:'#d6edff'},
+  {cols:3, rows:3, c1:'#ef8a3c', c2:'#ffe7cc'}
+];
+const NUMW = ['zéro','une','deux','trois','quatre','cinq','six','sept','huit','neuf','dix'];
+let P = null, puzT = [];
+const pLater = (f,ms) => { puzT.push(setTimeout(f,ms)); };
+function stopPuz(){ puzT.forEach(clearTimeout); puzT = []; P = null; $('#pzTray').innerHTML = ''; document.querySelectorAll('#pzArea .pc').forEach(x=>x.remove()); }
+function animalImage(a){
+  const c = document.createElement('canvas'), z = 600; c.width = c.height = z;
+  const x = c.getContext('2d');
+  const g = x.createRadialGradient(z*.5, z*.4, z*.05, z*.5, z*.5, z*.75);
+  g.addColorStop(0, a.w.c2); g.addColorStop(1, a.w.c1);
+  x.fillStyle = g; x.fillRect(0,0,z,z);
+  x.fillStyle = 'rgba(255,255,255,.25)';
+  for(let i=0;i<14;i++){ x.beginPath(); x.arc((i*97)%z, (i*173)%z, 10+(i%4)*8, 0, 7); x.fill(); }
+  x.font = `${z*.7}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`;
+  x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = '#000';
+  x.fillText(a.e, z/2, z*.54);
+  return c.toDataURL('image/png');
+}
+function startPuz(i){
+  hush(); hideOverlays(); stopAll();
+  curGame = 'puz';
+  const l = PLV[i];
+  const a = pick(memoPool());
+  const img = animalImage(a);
+  P = { lvl:i, l, a, img, pieces:[], placed:0, done:false };
+  $('#pzArea').classList.remove('done');
+  $('#pzGhost').style.backgroundImage = `url(${img})`;
+  $('#pzFull').style.backgroundImage = `url(${img})`;
+  $('#pzFull').classList.remove('on');
+  $('#pzSlots').style.gridTemplateColumns = `repeat(${l.cols},1fr)`;
+  $('#pzSlots').innerHTML = '<i></i>'.repeat(l.cols*l.rows);
+  const n = l.cols*l.rows;
+  const order = shuffle([...Array(n).keys()]);
+  for(let k=0;k<n;k++){
+    const el = document.createElement('div');
+    el.className = 'pc';
+    el.style.backgroundImage = `url(${img})`;
+    const pc = { k, c:k%l.cols, r:Math.floor(k/l.cols), el, placed:false, home:order.indexOf(k), x:0, y:0 };
+    dragPiece(pc);
+    $('#pzArea').appendChild(el);
+    P.pieces.push(pc);
+  }
+  show('puz');
+  layoutPuz();
+  say(`Un puzzle de ${NUMW[n].replace('une','un')} pièces ! Fais glisser les pièces sur le dessin.`, 250);
+  puzHint(14000);
+}
+function layoutPuz(){
+  if(!P || $('#puz').hidden) return;
+  const ar = $('#pzArea'), W_ = ar.clientWidth, H = ar.clientHeight; if(!W_ || !H) return;
+  const top = $('#puz .topbar').offsetHeight + 14, pad = 16;
+  const land = W_ > H*1.1;
+  const l = P.l, n = l.cols*l.rows;
+  let S_, bx, by, tray;
+  const fits = (sz, t) => { const pw = sz/l.cols, ph = sz/l.rows, tc = Math.floor(t.w/(pw*1.05)); return tc >= 1 && Math.ceil(n/tc)*ph*1.05 <= t.h; };
+  const geom = sz => land
+    ? (()=>{ const bx = Math.max(pad + 6, (W_*.5 - sz)/2 + 6), by = top + (H - top - pad - sz)/2; return {bx, by, tray:{x: bx + sz + 24, y: top, w: W_ - (bx + sz + 24) - pad, h: H - top - pad}}; })()
+    : (()=>{ const bx = (W_ - sz)/2, by = top + 4; return {bx, by, tray:{x: pad, y: by + sz + 22, w: W_ - 2*pad, h: H - (by + sz + 22) - pad}}; })();
+  S_ = Math.floor(land ? Math.min(H - top - pad - 10, W_*.5) : Math.min(W_ - 2*pad - 12, (H - top - pad)*.62));
+  while(S_ > 120 && !fits(S_, geom(S_).tray)) S_ -= 4;
+  ({bx, by, tray} = geom(S_));
+  const pw = S_/l.cols, ph = S_/l.rows;
+  P.geo = {bx, by, S:S_, pw, ph};
+  const b = $('#pzBoard'); b.style.left = bx+'px'; b.style.top = by+'px'; b.style.width = b.style.height = S_+'px';
+  // places dans le plateau de rangement : grille + petit décalage
+  const tc = Math.max(1, Math.min(n, Math.floor(tray.w / (pw*1.05)))), tr = Math.ceil(n/tc);
+  const cw = tray.w / tc, ch = Math.max(ph*.6, tray.h / tr);
+  P.pieces.forEach(pc=>{
+    const el = pc.el;
+    el.style.width = pw+'px'; el.style.height = ph+'px';
+    el.style.backgroundSize = `${S_}px ${S_}px`;
+    el.style.backgroundPosition = `${-pc.c*pw}px ${-pc.r*ph}px`;
+    const hc = pc.home % tc, hr = Math.floor(pc.home / tc);
+    const jx = ((pc.k*37)%11 - 5) * cw*.02, jy = ((pc.k*53)%11 - 5) * ch*.02;
+    pc.hx = Math.min(W_ - pw - 4, Math.max(4, tray.x + hc*cw + (cw - pw)/2 + jx));
+    pc.hy = Math.min(H - ph - 4, Math.max(top, tray.y + hr*ch + (ch - ph)/2 + jy));
+    pc.rot = ((pc.k*29)%9 - 4) * 1.5;
+    if(pc.placed) setPos(pc, bx + pc.c*pw, by + pc.r*ph, 0); else setPos(pc, pc.hx, pc.hy, pc.rot);
+  });
+}
+window.addEventListener('resize', layoutPuz);
+function setPos(pc, x, y, rot){ pc.x = x; pc.y = y; pc.el.style.transform = `translate(${x}px,${y}px) rotate(${rot||0}deg)${pc.el.classList.contains('drag')?' scale(1.08)':''}`; }
+let zTop = 10;
+function dragPiece(pc){
+  const el = pc.el; let sx = 0, sy = 0, ox = 0, oy = 0, on = false;
+  el.addEventListener('pointerdown', e=>{
+    if(!P || pc.placed || P.done) return;
+    e.preventDefault(); audio();
+    try{ el.setPointerCapture(e.pointerId); }catch(_){}
+    on = true; sx = e.clientX; sy = e.clientY; ox = pc.x; oy = pc.y;
+    el.classList.remove('wiggle'); el.classList.add('drag'); el.style.zIndex = ++zTop;
+    setPos(pc, ox, oy, 0); sfx.tap(); puzHint();
+  });
+  el.addEventListener('pointermove', e=>{ if(!on) return; setPos(pc, ox + e.clientX - sx, oy + e.clientY - sy, 0); });
+  const up = ()=>{
+    if(!on) return; on = false; el.classList.remove('drag');
+    if(!P) return;
+    const g = P.geo, tx = g.bx + pc.c*g.pw, ty = g.by + pc.r*g.ph;
+    if(Math.hypot(pc.x - tx, pc.y - ty) < Math.min(g.pw, g.ph)*.5){
+      pc.placed = true; el.classList.add('placed'); el.style.zIndex = 3;
+      setPos(pc, tx, ty, 0); sfx.card(); P.placed++;
+      if(P.placed >= P.pieces.length) puzDone();
+      else if(Math.random() < .45) say(pick(['Oui !','Bravo !','Super !','Bien joué !']));
+    } else {
+      setPos(pc, pc.hx, pc.hy, pc.rot); sfx.empty();
+      if(Math.random() < .4) say(pick(['Pas ici ! Regarde bien le dessin.','Essaie ailleurs !']));
+    }
+  };
+  el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+}
+let pzHintT = 0;
+function puzHint(ms){
+  clearTimeout(pzHintT);
+  pzHintT = setTimeout(()=>{
+    if(!P || P.done || $('#puz').hidden) return;
+    const left = P.pieces.filter(p=>!p.placed); if(!left.length) return;
+    const pc = pick(left);
+    pc.el.classList.remove('wiggle'); void pc.el.offsetWidth; pc.el.classList.add('wiggle');
+    const slot = $('#pzSlots').children[pc.k]; slot.classList.remove('glow'); void slot.offsetWidth; slot.classList.add('glow');
+    setTimeout(()=>{ pc.el.classList.remove('wiggle'); slot.classList.remove('glow'); }, 1700);
+    sfx.peek();
+    if(Math.random() < .5) say('Regarde ! Cette pièce va là !');
+    puzHint(9000);
+  }, ms || 11000);
+  puzT.push(pzHintT);
+}
+function puzDone(){
+  const p = P; p.done = true; clearTimeout(pzHintT);
+  pLater(()=>{
+    if(p !== P) return;
+    $('#pzArea').classList.add('done'); $('#pzFull').classList.add('on');
+    sfx.found(); sfx.magic();
+    say(`Bravo ! C'est ${p.a.n} !`, 100);
+  }, 350);
+  pLater(()=>{ if(p === P) showWin('puz', p.lvl, [p.a.e, '🧩', p.a.e], `Tu as fini le puzzle ${p.a.n.replace(/^le /,'du ').replace(/^la /,'de la ').replace(/^l'/,"de l'")} !`); }, 3900);
+}
+$('#puzBack').addEventListener('click', ()=>{ sfx.tap(); openLevels('puz'); });
+
+/* ---------- Compter les bébés ---------- */
+const CLV = [ {max:5, c1:'#3fb37f', c2:'#d4f7e3'}, {max:10, c1:'#d9507a', c2:'#ffd9e6'} ];
+const BABIES = [
+  {e:'🐥', s:'poussin', p:'poussins'}, {e:'🐱', s:'chaton', p:'chatons'}, {e:'🐶', s:'chiot', p:'chiots'},
+  {e:'🐰', s:'lapereau', p:'lapereaux'}, {e:'🐷', s:'porcelet', p:'porcelets'}, {e:'🐤', s:'caneton', p:'canetons'},
+  {e:'🐭', s:'souriceau', p:'souriceaux'}, {e:'🐸', s:'têtard', p:'têtards'}
+];
+const NUMM = ['zéro','un','deux','trois','quatre','cinq','six','sept','huit','neuf','dix'];
+const ROUNDS = 5;
+let C = null, cntT = [];
+const cLater = (f,ms) => { cntT.push(setTimeout(f,ms)); };
+function stopCnt(){ cntT.forEach(clearTimeout); cntT = []; C = null; $('#cField').innerHTML = ''; $('#cAns').innerHTML = ''; }
+function handSVG(k){
+  const up = [k>=5, k>=1, k>=2, k>=3, k>=4]; // pouce, index, majeur, annulaire, auriculaire
+  const F = [[22,10],[37,4],[52,8],[67,20]];
+  let f = '';
+  F.forEach(([x,t],i)=>{ const top = up[i+1] ? t : 50; f += `<rect x="${x}" y="${top}" width="13" height="${76-top}" rx="6.5"/>`; });
+  const th = up[0] ? '<rect x="2" y="44" width="13" height="40" rx="6.5" transform="rotate(-38 8 80)"/>' : '<rect x="12" y="62" width="12" height="26" rx="6" transform="rotate(-62 18 75)"/>';
+  return `<svg viewBox="0 0 92 120" aria-hidden="true"><g fill="#ffd8b0" stroke="#d99a6c" stroke-width="2.5">${th}${f}<rect x="18" y="52" width="64" height="62" rx="24"/></g>
+    ${[1,2,3,4].map(i=>up[i]?'':`<path d="M${F[i-1][0]+2} 60 h9" stroke="#d99a6c" stroke-width="2.5" stroke-linecap="round"/>`).join('')}</svg>`;
+}
+function handsHTML(n){ return n <= 5 ? handSVG(n) : handSVG(5) + handSVG(n-5); }
+function startCnt(i){
+  hush(); hideOverlays(); stopAll();
+  curGame = 'cnt';
+  C = { lvl:i, l:CLV[i], round:0, last:0, lock:false, kinds:shuffle(BABIES.slice()) };
+  $('#cDots').innerHTML = '<span class="slot"><span>⭐</span></span>'.repeat(ROUNDS);
+  show('cnt');
+  nextQuestion();
+}
+function nextQuestion(){
+  const c = C; if(!c) return;
+  const max = c.l.max, min = max > 5 ? 3 : 1;
+  let n; do{ n = Math.floor(rand(min, max+1)); }while(n === c.last && max > 1);
+  c.last = n; c.n = n; c.kind = c.kinds[c.round % c.kinds.length]; c.counted = 0; c.lock = false; c.tries = 0;
+  const opts = new Set([n]);
+  while(opts.size < 3){ const d = n + pick([-2,-1,1,2,3,-3]); if(d >= 1 && d <= max) opts.add(d); }
+  c.opts = shuffle([...opts]);
+  $('#cField').innerHTML = '';
+  for(let k=0;k<n;k++){
+    const b = document.createElement('button');
+    b.className = 'baby'; b.style.animationDelay = (k*.08).toFixed(2)+'s';
+    b.innerHTML = `${c.kind.e}<span class="bn"></span>`;
+    b.setAttribute('aria-label', c.kind.s);
+    b.addEventListener('click', ()=>tapBaby(b));
+    $('#cField').appendChild(b);
+  }
+  $('#cAns').innerHTML = c.opts.map(v=>`<button class="ans" data-v="${v}" aria-label="${v}"><span class="hands">${handsHTML(v)}</span><span class="num">${v}</span></button>`).join('');
+  layoutCnt();
+  askQ(400);
+}
+function askQ(d){ if(C) say(`Combien de ${C.kind.p} ?`, d||0); }
+function layoutCnt(){
+  if(!C || $('#cnt').hidden) return;
+  const sc = $('#cScene'), W_ = sc.clientWidth, H = sc.clientHeight; if(!W_ || !H) return;
+  const top = $('#cnt .topbar').offsetHeight + 8, pad = 14;
+  const land = W_ > H*1.15;
+  const ans = $('#cAns'), F = $('#cField');
+  let fx, fy, fw, fh, hh;
+  if(land){
+    const aw = Math.min(W_*.3, 280);
+    hh = Math.min((H - top - pad - 30)/3 - 22, aw/ (C.l.max > 5 ? 2.4 : 1.5));
+    Object.assign(ans.style, {left:(W_ - aw - pad)+'px', top:top+'px', width:aw+'px', height:(H-top-pad)+'px', flexDirection:'column', right:'', bottom:''});
+    fx = pad; fy = top; fw = W_ - aw - 3*pad; fh = H - top - pad;
+  } else {
+    const ah = Math.min(H*.24, 190);
+    const bw = (W_ - 2*pad - 2*14)/3;
+    hh = Math.min(ah - 54, bw / (C.l.max > 5 ? 1.85 : 0.95));
+    Object.assign(ans.style, {left:pad+'px', top:(H - ah - pad)+'px', width:(W_-2*pad)+'px', height:ah+'px', flexDirection:'row', right:'', bottom:''});
+    fx = pad; fy = top; fw = W_ - 2*pad; fh = H - ah - top - 2*pad;
+  }
+  ans.style.setProperty('--hh', Math.max(30, hh)+'px');
+  ans.querySelectorAll('.ans').forEach(b=>{ b.style.width = land ? '100%' : `calc((100% - 28px)/3)`; b.style.flex = land ? '1' : 'none'; b.style.height = land ? '' : '100%'; b.style.flexDirection = land ? 'row' : 'column'; b.style.gap = land ? '12px' : '2px'; });
+  Object.assign(F.style, {left:fx+'px', top:fy+'px', width:fw+'px', height:fh+'px'});
+  const n = C.n;
+  let best = {s:0, cols:1};
+  for(let cols=1; cols<=n; cols++){ const rows = Math.ceil(n/cols); const s = Math.min(fw/cols, fh/rows); if(s > best.s) best = {s, cols}; }
+  const cols = best.cols, rows = Math.ceil(n/cols), cw = fw/cols, ch = fh/rows;
+  const fs = Math.min(best.s*.54, 120);
+  [...F.children].forEach((b,k)=>{
+    const r = Math.floor(k/cols), inRow = r === rows-1 ? n - r*cols : cols, cc = k - r*cols;
+    const off = (cols - inRow) * cw / 2;
+    const jx = (((k*37)%9) - 4) * cw*.025, jy = (((k*53)%9) - 4) * ch*.025;
+    b.style.left = (off + (cc+.5)*cw + jx)+'px'; b.style.top = ((r+.5)*ch + jy)+'px'; b.style.fontSize = fs+'px';
+  });
+}
+window.addEventListener('resize', layoutCnt);
+function tapBaby(b){
+  audio();
+  if(!C || b.classList.contains('counted')) { if(C) sfx.tap(); return; }
+  C.counted++;
+  b.querySelector('.bn').textContent = C.counted;
+  b.classList.add('counted');
+  b.classList.remove('hop'); void b.offsetWidth; b.classList.add('hop');
+  tone(440 + C.counted*60, 0, .15, 'triangle', .14);
+  say(cap(NUMM[C.counted]) + (C.counted === C.n ? ` ! ${C.n === 1 ? 'Un ' + C.kind.s : cap(NUMM[C.n]) + ' ' + C.kind.p} !` : ''));
+}
+$('#cAns').addEventListener('click', e=>{
+  const b = e.target.closest('.ans'); if(!b || !C || C.lock) return;
+  audio();
+  const v = +b.dataset.v, c = C;
+  if(v === c.n){
+    c.lock = true; b.classList.add('good'); sfx.found();
+    $('#cField').querySelectorAll('.baby').forEach((x,k)=>{ x.style.animationDelay = (k*.06)+'s'; x.classList.remove('hop'); void x.offsetWidth; x.classList.add('hop'); });
+    say(`Oui ! ${c.n === 1 ? 'Un ' + c.kind.s : cap(NUMM[c.n]) + ' ' + c.kind.p} !`);
+    const dot = $('#cDots').children[c.round]; if(dot) dot.classList.add('on');
+    c.round++;
+    cLater(()=>{ if(c !== C) return; if(c.round >= ROUNDS) showWin('cnt', c.lvl, BABIES.slice(0,5).map(x=>x.e), 'Tu sais très bien compter !'); else nextQuestion(); }, 2300);
+  } else {
+    b.classList.remove('no'); void b.offsetWidth; b.classList.add('no'); sfx.empty();
+    c.tries++;
+    say(c.tries > 1 ? `Comptons ensemble ! Touche les ${c.kind.p} un par un.` : `Hmm, pas tout à fait ! Compte encore les ${c.kind.p}.`);
+  }
+});
+$('#cntAsk').addEventListener('click', ()=>{ audio(); sfx.tap(); askQ(); });
+$('#cntBack').addEventListener('click', ()=>{ sfx.tap(); openLevels('cnt'); });
+
+/* ---------- Registre des jeux ---------- */
+const GAMES = {
+  memo: { title:['🐼','🐼'], levels:LV, start:startMemo, label:l=>`${l.pairs*2} cartes`,
+          icon:l=>miniGrid(l.cols, l.pairs*2, 1.25) },
+  puz:  { title:['🧩','🦁'], levels:PLV, start:startPuz, label:l=>`${l.cols*l.rows} pièces`,
+          icon:l=>miniGrid(l.cols, l.cols*l.rows, 1) },
+  cnt:  { title:['🐥','✋'], levels:CLV, start:startCnt, label:l=>`Jusqu'à ${l.max}`,
+          icon:l=>`<span class="lvhands" style="display:flex;gap:2px;height:52%">${l.max > 5 ? handSVG(5)+handSVG(5) : handSVG(5)}</span>` }
+};
 
 document.addEventListener('contextmenu', e=>e.preventDefault());
 document.addEventListener('dblclick', e=>e.preventDefault());
