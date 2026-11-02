@@ -2,6 +2,19 @@
 
 Une petite application de jeux pour les enfants de 4 ans, sans lecture : tout est guidé par la voix et les sons. Un menu à grosses images permet de passer d'un jeu à l'autre (🏠 revient toujours en arrière).
 
+## Le petit puzzle
+
+- **3 tailles** : 4, 6 ou 9 grosses pièces à faire glisser du doigt sur le modèle (l'animal est dessiné en transparence).
+- Une pièce lâchée près de sa place s'y accroche ; ailleurs, elle revient doucement. Si l'enfant hésite, une pièce et sa place clignotent.
+- À la fin, l'animal entier apparaît et danse, et la voix dit son nom.
+
+## Compter les bébés
+
+- La voix demande « Combien de poussins ? » (ou de chatons, chiots, lapereaux…). L'enfant touche la main qui montre le bon nombre de doigts ; le chiffre est écrit dessous.
+- **2 niveaux** : jusqu'à 5 (une main), puis jusqu'à 10 (deux mains).
+- Toucher les bébés les compte à voix haute avec un petit numéro. Après une erreur, la voix propose de compter ensemble. Le bouton 👂 répète la question.
+- 5 questions par partie, une étoile à la fin.
+
 ## Memory des animaux
 
 - **4 tailles de jeu** : 6, 8, 12 et 16 cartes, choisies par de gros boutons qui montrent le nombre de cartes.
