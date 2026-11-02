@@ -204,7 +204,8 @@ button:focus-visible{outline:5px solid var(--white);outline-offset:4px;border-ra
 @media (max-height:540px){.parade{display:none}.trophy{font-size:17vmin}.epic-sub br{display:none}}
 
 /* ---------- Espace parents : réglages ---------- */
-.panel{max-height:calc(100vh - 32px);overflow-y:auto}
+.panel{max-height:calc(100% - 8px);overflow-y:auto}
+.panel>*{flex:none}
 .plabel{font-size:15px;margin-bottom:-8px}
 .pin{font:inherit;font-size:17px;padding:10px 12px;border-radius:12px;border:2px solid var(--sky);background:var(--white);color:var(--ink);-webkit-user-select:text;user-select:text;width:100%;box-sizing:border-box}
 .pnote{font-size:14px;opacity:.8}
