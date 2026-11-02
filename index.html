@@ -1431,13 +1431,17 @@ let C = null, cntT = [];
 const cLater = (f,ms) => { cntT.push(setTimeout(f,ms)); };
 function stopCnt(){ cntT.forEach(clearTimeout); cntT = []; C = null; $('#cField').innerHTML = ''; $('#cAns').innerHTML = ''; }
 function handSVG(k){
-  const up = [k>=5, k>=1, k>=2, k>=3, k>=4]; // pouce, index, majeur, annulaire, auriculaire
-  const F = [[22,10],[37,4],[52,8],[67,20]];
-  let f = '';
-  F.forEach(([x,t],i)=>{ const top = up[i+1] ? t : 50; f += `<rect x="${x}" y="${top}" width="13" height="${76-top}" rx="6.5"/>`; });
-  const th = up[0] ? '<rect x="2" y="44" width="13" height="40" rx="6.5" transform="rotate(-38 8 80)"/>' : '<rect x="12" y="62" width="12" height="26" rx="6" transform="rotate(-62 18 75)"/>';
-  return `<svg viewBox="0 0 92 120" aria-hidden="true"><g fill="#ffd8b0" stroke="#d99a6c" stroke-width="2.5">${th}${f}<rect x="18" y="52" width="64" height="62" rx="24"/></g>
-    ${[1,2,3,4].map(i=>up[i]?'':`<path d="M${F[i-1][0]+2} 60 h9" stroke="#d99a6c" stroke-width="2.5" stroke-linecap="round"/>`).join('')}</svg>`;
+  // Comptage à la française : 1 = pouce, 2 = + index, 3 = + majeur, 4 = + annulaire, 5 = + auriculaire
+  const O = '#d99a6c', K = '#ffd8b0';
+  const FG = [[36,14],[50,8],[64,12],[77,24]];       // index, majeur, annulaire, auriculaire : x, bout levé
+  const segs = FG.map(([x,t],i)=>[x,64,x, k >= i+2 ? t : 50]);
+  const thumbUp = k >= 1;
+  if(thumbUp) segs.push([40,96,13,62]);
+  const line = (a,w,c) => `<line x1="${a[0]}" y1="${a[1]}" x2="${a[2]}" y2="${a[3]}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+  const out = segs.map(a=>line(a,16,O)).join('') + `<rect x="28" y="54" width="56" height="58" rx="20" fill="${O}" stroke="${O}" stroke-width="4"/>`;
+  const fill = segs.map(a=>line(a,11.5,K)).join('') + `<rect x="28" y="54" width="56" height="58" rx="20" fill="${K}"/>`;
+  const tf = thumbUp ? '' : line([40,99,60,80],16,O) + line([40,99,60,80],11.5,K);
+  return `<svg viewBox="0 0 92 120" aria-hidden="true">${out}${fill}${tf}</svg>`;
 }
 function handsHTML(n){ return n <= 5 ? handSVG(n) : handSVG(5) + handSVG(n-5); }
 function startCnt(i){
