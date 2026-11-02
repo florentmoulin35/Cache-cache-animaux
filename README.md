@@ -1,6 +1,16 @@
-# Cache-cache animaux
+# Les jeux de Louis
 
-Un jeu de cache-cache pour les enfants de 4 ans, sans lecture : tout est guidé par la voix et les sons.
+Une petite application de jeux pour les enfants de 4 ans, sans lecture : tout est guidé par la voix et les sons. Un menu à grosses images permet de passer d'un jeu à l'autre (🏠 revient toujours en arrière).
+
+## Memory des animaux
+
+- **4 tailles de jeu** : 6, 8, 12 et 16 cartes, choisies par de gros boutons qui montrent le nombre de cartes.
+- Au début, les animaux sont montrés quelques secondes (« Regarde bien les animaux… »), puis retournés.
+- La voix dit le nom de chaque animal retourné. Deux cartes pareilles restent visibles avec un cadre doré ; sinon elles se retournent gentiment.
+- Chaque partie gagnée donne une étoile, affichée sous le bouton du jeu (jusqu'à 3).
+- Les animaux viennent des mondes du cache-cache ; ceux des océans n'apparaissent qu'une fois le monde secret ouvert.
+
+## Cache-cache animaux
 
 - **4 mondes** : la neige, la forêt, la jungle et le désert. Dans chaque monde, 5 animaux sont cachés sous 8 objets. L'enfant touche un objet pour le soulever.
 - **Album** : chaque animal trouvé donne une carte à collectionner. Quand les 5 animaux d'un monde sont trouvés, l'enfant gagne la carte spéciale de ce monde.
