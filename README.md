@@ -2,6 +2,17 @@
 
 Une petite application de jeux pour les enfants de 4 ans, sans lecture : tout est guidé par la voix et les sons. Un menu à grosses images permet de passer d'un jeu à l'autre (🏠 revient toujours en arrière).
 
+## Version « grand » (test, pour 5 ans)
+
+Dans le dossier `grand/` : https://florentmoulin35.github.io/Cache-cache-animaux/grand/ (la version classique ne change pas).
+
+- **Style aventure** : fond nuit étoilée, tuiles de jeu avec leur nom, contours encrés, moins de pastel et moins d'animations.
+- **Étoiles et grades** : chaque partie donne 1 à 3 étoiles selon les erreurs ; les étoiles font monter de grade (Petit explorateur → Explorateur → Aventurier → Grand aventurier → Champion → Légende).
+- **Niveaux à débloquer** un par un.
+- **Cache-cache** : 10 cachettes ; les animaux se montrent puis se cachent, il faut se souvenir où.
+- **Memory** : 8 à 20 cartes, coup d'œil de plus en plus court. **Puzzle** : 6 à 16 pièces. **Les nombres** : jusqu'à 10, jusqu'à 20, puis additions.
+- Progression séparée de la version classique (le prénom et la voix sont repris).
+
 ## Le petit puzzle
 
 - **3 tailles** : 4, 6 ou 9 grosses pièces à faire glisser du doigt sur le modèle (l'animal est dessiné en transparence).
